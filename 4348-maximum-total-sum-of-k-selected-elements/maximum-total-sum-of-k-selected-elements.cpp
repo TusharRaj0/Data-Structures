@@ -4,18 +4,29 @@ public:
 
         priority_queue<int> pq;
 
-        for(int x : nums)
-            pq.push(x);
-
         long long sum = 0;
 
-        while(k-- && !pq.empty())
+        for(int x : nums)
+        {
+            pq.push(x);
+        }
+
+        while(k > 0)
         {
             int t = pq.top();
             pq.pop();
 
-            sum += 1LL * t * max(1, mul);
+            if(mul > 0)
+            {
+                sum += 1LL * t * mul;
+            }
+            else
+            {
+                sum += t;
+            }
+
             mul--;
+            k--;
         }
 
         return sum;
